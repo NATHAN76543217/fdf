@@ -16,6 +16,8 @@ int main(int ac, char **av)
         return FAILURE;
     }
     fdf.filename = av[1];
+    if (parseMap(&fdf) == FAILURE)
+        return FAILURE;
     init_camera(&fdf);
     return SUCCESS;
 }

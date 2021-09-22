@@ -11,6 +11,8 @@ PATH_SRC		=	srcs
 PATH_OBJ		=	objs
 PATH_LIBFT		= 	libft
 PATH_MINILIBX	= 	minilibx
+PATH_LIBFT_INC	= 	$(PATH_LIBFT)/$(PATH_INC)
+PATH_MINILIBX_INC	= 	$(PATH_MINILIBX)
 
 # List of sources
 SRCS_FILES		=	main.c fdf.c
@@ -22,13 +24,14 @@ MLX_INC_FILES	=	mlx.h
 SRCS		=	$(addprefix $(PATH_SRC)/, $(SRCS_FILES))
 OBJS		=	$(addprefix $(PATH_OBJ)/, $(SRCS:.c=.o))
 INCS		=	$(addprefix $(PATH_INC)/, $(INC_FILES)) \
-				$(addprefix $(PATH_LIBFT)/$(PATH_INC)/, $(LIBFT_INC_FILES)) \
-				$(addprefix $(PATH_MINILIBX)/, $(MLX_INC_FILES))
+				$(addprefix $(PATH_LIBFT_INC)/, $(LIBFT_INC_FILES)) \
+				$(addprefix $(PATH_MINILIBX_INC)/, $(MLX_INC_FILES))
 
 # Commands of compilation
 COMP		=	clang
 COMP_FLAG	=	-Wall -Werror -Wextra 
-COMP_ADD	=	-I$(PATH_INC)
+COMP_LIB	=	-L$(PATH_LIBFT) -lft
+COMP_ADD	=	-I$(PATH_INC) -I$(PATH_LIBFT_INC) -I$(PATH_MINILIBX_INC) $(COMP_LIB)
 COMP_DEB	=	-g3 -fsanitize=address
 
 
